@@ -14,10 +14,13 @@ class CreateProcessesTable extends Migration
     public function up()
     {
         Schema::create('processes', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('type');
-            $table->string('body', 100);
-            $table->string('state');
+            $table->string('input', 100);
+            $table->integer('output')->nullable();
+            $table->string('status');
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('finished_at')->nullable();
             $table->timestamps();
         });
     }
